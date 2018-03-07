@@ -56,13 +56,13 @@ let printBkSearch = (resolve) => {
             uStatus: fullItem.author_name ? "" : "uknow",
             pubDate: fullItem.first_publish_year ?  `- first published in ${fullItem.first_publish_year}` : "",
             ed: fullItem.edition_count > 1 ? "editions" : "edition",
-            image: fullItem.cover_edition_key ? `<img class="image" src="https://covers.openlibrary.org/b/olid/${fullItem.cover_edition_key}-M.jpg">` : `<img class="image" src=${filler}>`
+            image: fullItem.cover_edition_key ? `https://covers.openlibrary.org/b/olid/${fullItem.cover_edition_key}-M.jpg` : `${filler}`
         };
         
         //Print to DOM
         outputBook.innerHTML += 
         `<div class="prnt">
-        ${itemList.image}
+        <img class="bookImage" src="${itemList.image}">
         <h1>${fullItem.title}${itemList.sub}</h1>
         <h2 class=${itemList.uStatus}>by ${itemList.author}</h2>
         <p>${fullItem.edition_count} ${itemList.ed} ${itemList.pubDate}</p>
