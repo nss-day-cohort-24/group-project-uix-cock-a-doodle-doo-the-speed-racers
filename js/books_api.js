@@ -1,5 +1,6 @@
 "use strict";
 
+// variables and eventlisteners
 let searchBook = document.getElementById("searchBook"),
     outputBook = document.getElementById("outputBook");
 searchBook.addEventListener("keydown", searchingBk);
@@ -20,9 +21,8 @@ function searchingBk(event) {
     }
 }
 
+// calls data && limits it to only 10 items
 let dataBook = (input) => {
-
-    // calls data using input/theSplit && limits to 10
     return new Promise ((resolve, reject) => {
         var bookBase = `http://openlibrary.org/search.json?q=${input}&limit=10`;
         
@@ -39,17 +39,17 @@ let dataBook = (input) => {
     });
 };
 
-// filler image for no images
+// filler image if the book doesn't have an image
 let filler = `https://www.webcastlive.es/errores/404/images/03.png`;
 
+// .then(); handles all looping and printing to DOM
 let printBkSearch = (resolve) => {
     outputBook.innerHTML = "";
 
-    // start of the loop
     for (let item in resolve.docs){
         let fullItem  = resolve.docs[item];
 
-        //testing ternary operator (checks if the data is undefined or not && checks the amount of editions)
+        //ternary operator (checks if the data is undefined or not && checks the amount of editions)
         let itemList = {
             sub: fullItem.subtitle ? `: ${fullItem.subtitle}` : "",
             author: fullItem.author_name ? `${fullItem.author_name}` : "Unknown",
