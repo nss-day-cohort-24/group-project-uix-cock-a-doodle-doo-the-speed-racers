@@ -1,5 +1,8 @@
 "use strict";
 
+
+require("../js/weather.js");
+
 let news_api = require('./news_api');
 let newsToDom = require('./dom-builder');
 // books api calls
@@ -9,3 +12,4 @@ news_api.getHeadlines()
   .then((resolve) => {
     newsToDom.taco(resolve);
 });
+
