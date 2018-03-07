@@ -9,7 +9,7 @@ let getHeadlines = () => {
 
     newsXHR.addEventListener("load", function() {
       let data = JSON.parse(this.responseText);
-      console.log("data in call", data);
+      // console.log("data in call", data);
       resolve(data);
     });
 
