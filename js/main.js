@@ -1,11 +1,11 @@
 "use strict";
 
-// console.log("Hello main.js");
-
-let news = require('./news_api');
-
-// news.api_calls.getHeadlines();
-news.api_calls.giveHeadlines();
-
+let news_api = require('./news_api');
+let newsToDom = require('./dom-builder');
 // books api calls
 let books = require('./books_api');
+
+news_api.getHeadlines()
+  .then((resolve) => {
+    newsToDom.taco(resolve);
+});
