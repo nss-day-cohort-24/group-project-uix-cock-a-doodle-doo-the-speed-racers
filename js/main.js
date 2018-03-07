@@ -1,8 +1,9 @@
 "use strict";
 
-// console.log("Hello main.js");
+let news_api = require('./news_api');
+let newsToDom = require('.dom-builder');
 
-let news = require('./news_api');
-
-// news.api_calls.getHeadlines();
-news.api_calls.giveHeadlines();
+news_api.getHeadlines()
+  .then(resolve); {
+    newsToDom.taco(data);
+  }
