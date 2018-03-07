@@ -1,12 +1,15 @@
 "use strict";
 
+
 require("../js/weather.js");
 
-console.log("Hello main.js");
-// console.log("Hello main.js");
+let news_api = require('./news_api');
+let newsToDom = require('./dom-builder');
+// books api calls
+let books = require('./books_api');
 
-let news = require('./news_api');
-
-// news.api_calls.getHeadlines();
-news.api_calls.giveHeadlines();
+news_api.getHeadlines()
+  .then((resolve) => {
+    newsToDom.taco(resolve);
+});
 
