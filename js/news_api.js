@@ -13,8 +13,6 @@ let getHeadlines = () => {
     let data = JSON.parse(this.responseText);
     console.log("data in call", data);
     headlines = data.results;
-    //show the planets
-    // planets.map(dom.populatePage);
   });
 
   newsXHR.addEventListener("error", function(){
