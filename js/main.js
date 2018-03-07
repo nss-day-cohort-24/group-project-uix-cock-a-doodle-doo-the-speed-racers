@@ -4,16 +4,16 @@
 let meetupAPI = require('./meetup-api.js');
 let news = require('./news_api');
 let printMeetup = require('./dom-builder');
+require("../js/weather.js");
+let news_api = require('./news_api');
+let newsToDom = require('./dom-builder');
+let books = require('./books_api');
 
 // news.api_calls.getHeadlines();
 news.api_calls.giveHeadlines();
 
 "use strict";
 console.log("javascripts.js");
-
-
-
-
 
 
 ///function to call the meetup APIs
@@ -40,5 +40,12 @@ function callMeetupApi(url) {
     });
 
          
+// books api calls
+
+
+news_api.getHeadlines()
+  .then((resolve) => {
+    newsToDom.taco(resolve);
+});
 
 
