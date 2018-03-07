@@ -1,5 +1,9 @@
 "use strict";
 
+let $ = require('jquery');
+let printMeetup = require('./dom-builder');
+let api_calls = {};
+
 //News.org API
 let base = "https://newsapi.org/v2/top-headlines?country=us&apiKey=b8395cf55b0b4b42b415224d307e5713";
 
@@ -23,4 +27,7 @@ let getHeadlines = () => {
   });
 };
 
-module.exports = {getHeadlines};
+
+module.exports = {api_calls, getHeadlines};
+
+
