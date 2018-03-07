@@ -1,5 +1,6 @@
 "use strict";
-
+let $ = require('jquery');
+let printMeetup = require('./dom-builder');
 let api_calls = {};
 let base = "https://newsapi.org/v2/top-headlines?country=us&apiKey=b8395cf55b0b4b42b415224d307e5713";
 let headlines = [];
@@ -27,5 +28,6 @@ api_calls.giveHeadlines = () => {
   getHeadlines();
   return headlines;
 };
+
 
 module.exports = {api_calls};
