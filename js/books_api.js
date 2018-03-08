@@ -2,7 +2,11 @@
 
 // variables and eventlisteners
 let searchBook = document.getElementById("searchBook"),
-    outputBook = document.getElementById("outputBook");
+    outputBook = document.getElementById("outputBook"),
+    login = require("./user"),
+    firebase = require("./fb-config"),
+    savedBooks = document.getElementById("savedBooks"),
+    $ = require('jquery');
 searchBook.addEventListener("keydown", searchingBk);
 
 function searchingBk(event) {
@@ -39,9 +43,6 @@ let dataBook = (input) => {
     });
 };
 
-// filler image if the book doesn't have an image
-let filler = `https://www.webcastlive.es/errores/404/images/03.png`;
-
 // .then(); handles all looping and printing to DOM
 let printBkSearch = (resolve) => {
     outputBook.innerHTML = "";
@@ -56,16 +57,148 @@ let printBkSearch = (resolve) => {
             uStatus: fullItem.author_name ? "" : "uknow",
             pubDate: fullItem.first_publish_year ?  `- first published in ${fullItem.first_publish_year}` : "",
             ed: fullItem.edition_count > 1 ? "editions" : "edition",
-            image: fullItem.cover_edition_key ? `https://covers.openlibrary.org/b/olid/${fullItem.cover_edition_key}-M.jpg` : `${filler}`
         };
         
         //Print to DOM
         outputBook.innerHTML += 
         `<div class="prnt">
-        <img class="bookImage" src="${itemList.image}">
         <h1>${fullItem.title}${itemList.sub}</h1>
         <h2 class=${itemList.uStatus}>by ${itemList.author}</h2>
         <p>${fullItem.edition_count} ${itemList.ed} ${itemList.pubDate}</p>
+        <button class="save">Save</button>
         </div>`;
     }
 };
+
+/////////////////////////////////////////////
+/// IN REGARDS TO SAVING && DELETING DATA ///
+/////////////////////////////////////////////
+
+//////////////////////
+/// SECTION 1 SAVE ///
+//////////////////////
+document.querySelector("body").addEventListener("click", saveBook);
+
+//clicked build data
+function saveBook(event){
+    if (event.target.className === "save"){
+        let bookObj = buildBookObj();
+        addBook(bookObj).then(
+            (resolve) =>{
+                loadSaveBooks();
+            });
+    }
+}
+
+// data builder
+function buildBookObj(){
+    let bookObj = {
+        title: $(".save").siblings().eq(0).text(),
+        author: $(".save").siblings().eq(1).text(),
+        description: $(".save").siblings().eq(2).text(),
+        uid: login.getUser()
+    };
+    return bookObj;
+}
+
+//data poster
+function addBook(bookFormObj){
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/books.json`,
+        type: 'POST',
+        data: JSON.stringify(bookFormObj),
+        dataType: 'json'
+    }).done((bookID) => {
+        return bookID;
+    });
+}
+
+///////////////////////
+/// SECTION 2 PRINT ///
+///////////////////////
+let savedLoad = document.getElementById("savedBooks");
+savedLoad.addEventListener("click", loadSaveBooks);
+
+// in charge of printing to DOM
+function loadSaveBooks() {
+    let currentUser = login.getUser();
+    FbBooks(currentUser).then(
+        (resolve) => {
+            printBkSave(resolve);
+        },
+        (reject) => {
+            console.log("didn't load");
+        }
+    );
+}
+
+//data call for books
+let FbBooks = (input) => {
+    return new Promise ((resolve, reject) => {
+        var FB = `https://cadd-speed-racers.firebaseio.com/books.json?orderBy="uid"&equalTo="${input}"`;
+        
+        let request = new XMLHttpRequest();
+
+        request.onload = function() {
+            if (request.status === 200) {
+                let data = JSON.parse(request.responseText);
+                resolve(data);
+            }
+        };
+        request.open("GET", FB);
+        request.send();
+    });
+};
+
+//print to DOM for save
+let printBkSave = (resolve) => {
+    savedBooks.innerHTML = "";
+
+    for (let item in resolve){
+        let fullItem  = resolve[item];
+
+        //ternary operator (checks if the data is undefined or not && checks the amount of editions)
+        let itemList = {
+            uStatus: fullItem.author == "by Unknown" ? "" : "uknow"
+        };
+        
+        //Print to DOM
+        savedBooks.innerHTML += 
+        `<div class="prntSave">
+        <h1>SAVED BOOK</h1>
+        <h1>${fullItem.title}</h1>
+        <h2 class=${itemList.uStatus}>${fullItem.author}</h2>
+        <p>${fullItem.description}</p>
+        <button id="${item}" class="delete">DELETE</button>
+        </div>`;
+    }
+};
+
+////////////////////////
+/// SECTION 3 DELETE ///
+////////////////////////
+$(document).on("click", ".delete", deleteBook);
+
+// //clicked delete data
+function deleteBook(event){
+        let bookID = event.target.id;
+        console.log("bookID", bookID);
+        removeBook(bookID).then(
+            (resolve) => {
+                loadSaveBooks();
+            },
+            (reject) => {
+                console.log("didn't load");
+            }
+        );
+}
+
+// //data deleter
+function removeBook(bookId){
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/books/${bookId}.json`,
+        type: 'DELETE'
+    }).done((data) => {
+        return data;
+    });
+}
