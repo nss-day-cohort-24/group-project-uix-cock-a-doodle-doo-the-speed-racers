@@ -9,7 +9,7 @@ function meetupToRenderToDom(meetupList) {
     events.forEach((event)=> {
       $('#meetups').append(`<div class="meetupevent">
       <h3>${event.group.name}</h3>
-      <p> ${event.venue.name}<br> 
+      <p> ${event.venue.name}<br>
       ${event.venue.address_1}<br></p>
       <p>${event.local_date} ${event.local_time}</p>
       <a target="_blank" href="${event.link}">learn more</a></div>`);
@@ -18,22 +18,33 @@ function meetupToRenderToDom(meetupList) {
 
 //News to DOM
 let newsDiv = document.getElementById("news");
+let allHeadlines = {};
 
-function publishNews(data) {
+function chopData(data) {
   let trunData = data.articles;
   trunData.splice(9, 10);
-  trunData.forEach((article) => {
-    // console.log(article);
-    let source = article.source;
+  return trunData;
+}
+
+function giveAllHeadlines() {
+  return allHeadlines;
+}
+
+function publishNews(aRay) {
+  for(var i = 0; i < aRay.length; i++) {
+    let article = aRay[i];
     let headline = {
       title: article.title,
       description: article.description,
-      source_name: source.name,
+      source_name: article.source.name,
       url: article.url,
-      image: (article.urlToImage === null) ? "Some text" : article.urlToImage
+      image: article.urlToImage
     };
-    newsDiv.innerHTML += `<div><img src="${article.urlToImage}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><a href="${headline.url}" target="_blank">Read more&hellip;</a></div>`;
-    });
+
+    allHeadlines[i] = headline;
+    newsDiv.innerHTML += `<div id="news_article--${i}"><img src="${article.urlToImage}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><a href="${headline.url}" target="_blank">Read more&hellip;</a></div>`;
+    }
+    console.log("allHeadlines", allHeadlines);
   }
 
-module.exports = {publishNews, meetupToRenderToDom};
+module.exports = {publishNews, meetupToRenderToDom, chopData, giveAllHeadlines};
