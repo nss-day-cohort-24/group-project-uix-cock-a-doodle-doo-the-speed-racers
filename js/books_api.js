@@ -2,7 +2,10 @@
 
 // variables and eventlisteners
 let searchBook = document.getElementById("searchBook"),
-    outputBook = document.getElementById("outputBook");
+    outputBook = document.getElementById("outputBook"),
+    login = require("./user"),
+    firebase = require("./fb-config"),
+    $ = require('jquery');
 searchBook.addEventListener("keydown", searchingBk);
 
 function searchingBk(event) {
@@ -62,10 +65,74 @@ let printBkSearch = (resolve) => {
         //Print to DOM
         outputBook.innerHTML += 
         `<div class="prnt">
-        <img class="bookImage" src="${itemList.image}">
         <h1>${fullItem.title}${itemList.sub}</h1>
         <h2 class=${itemList.uStatus}>by ${itemList.author}</h2>
         <p>${fullItem.edition_count} ${itemList.ed} ${itemList.pubDate}</p>
+        <button class="save">Save</button>
         </div>`;
     }
 };
+
+document.querySelector("body").addEventListener("click", saveBook);
+
+//clicked build data
+function saveBook(event){
+    if (event.target.className === "save"){
+        let bookObj = buildBookObj();
+        addBook(bookObj).then(
+            (resolve) =>{
+                console.log("DONE");
+            });
+
+        // console.log("CLICK SAVE", $(".save").siblings().eq(2).text());
+    }
+}
+
+// data builder
+function buildBookObj(){
+    let bookObj = {
+        title: $(".save").siblings().eq(0).text(),
+        author: $(".save").siblings().eq(1).text(),
+        description: $(".save").siblings().eq(2).text(),
+        uid: login.getUser()
+    };
+    return bookObj;
+}
+
+//data poster
+function addBook(bookFormObj){
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/books.json`,
+        type: 'POST',
+        data: JSON.stringify(bookFormObj),
+        dataType: 'json'
+    }).done((bookID) => {
+        return bookID;
+    });
+}
+
+// let savedObj = {};
+//savedObj.news() {
+//  title:
+//  source:
+//  description:
+//  uid: 
+//}
+
+//savedObj.meetups() {
+//  title:
+//  venue:
+//  date:
+//  time:
+//  uid:
+//}
+
+//savedObj.books() {
+//  title:
+//  author:
+//  description:
+//  uid:
+//}
+
+//module.exports = {savedObj};
+//savedObj.news();
