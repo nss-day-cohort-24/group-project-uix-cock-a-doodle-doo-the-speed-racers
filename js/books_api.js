@@ -74,6 +74,9 @@ let printBkSearch = (resolve) => {
 /// IN REGARDS TO SAVING && DELETING DATA ///
 /////////////////////////////////////////////
 
+//////////////////////
+/// SECTION 1 SAVE ///
+//////////////////////
 document.querySelector("body").addEventListener("click", saveBook);
 
 //clicked build data
@@ -110,6 +113,12 @@ function addBook(bookFormObj){
     });
 }
 
+///////////////////////
+/// SECTION 2 PRINT ///
+///////////////////////
+let savedLoad = document.getElementById("savedBooks");
+savedLoad.addEventListener("click", loadSaveBooks);
+
 // in charge of printing to DOM
 function loadSaveBooks() {
     let currentUser = login.getUser();
@@ -123,6 +132,7 @@ function loadSaveBooks() {
     );
 }
 
+//data call for books
 let FbBooks = (input) => {
     return new Promise ((resolve, reject) => {
         var FB = `https://cadd-speed-racers.firebaseio.com/books.json?orderBy="uid"&equalTo="${input}"`;
@@ -140,6 +150,7 @@ let FbBooks = (input) => {
     });
 };
 
+//print to DOM for save
 let printBkSave = (resolve) => {
     savedBooks.innerHTML = "";
 
@@ -153,14 +164,55 @@ let printBkSave = (resolve) => {
         
         //Print to DOM
         savedBooks.innerHTML += 
-        `<div class="prnt">
+        `<div class="prntSave">
+        <h1>SAVED BOOK</h1>
         <h1>${fullItem.title}</h1>
         <h2 class=${itemList.uStatus}>${fullItem.author}</h2>
         <p>${fullItem.description}</p>
-        <button class="save">Save</button>
+        <button id="${item}" class="delete">DELETE</button>
         </div>`;
     }
 };
+
+////////////////////////
+/// SECTION 3 DELETE ///
+////////////////////////
+$(document).on("click", ".delete", deleteBook);
+
+// //clicked delete data
+function deleteBook(event){
+        let bookID = event.target.id;
+        console.log("bookID", bookID);
+        removeBook(bookID).then(
+            (resolve) => {
+                loadSaveBooks();
+            },
+            (reject) => {
+                console.log("didn't load");
+            }
+        );
+}
+
+// // data builder
+// function buildBookObj(){
+//     let bookObj = {
+//         title: $(".save").siblings().eq(0).text(),
+//         author: $(".save").siblings().eq(1).text(),
+//         description: $(".save").siblings().eq(2).text(),
+//         uid: login.getUser()
+//     };
+//     return bookObj;
+// }
+
+// //data deleter
+function removeBook(bookId){
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/books/${bookId}.json`,
+        type: 'DELETE'
+    }).done((data) => {
+        return data;
+    });
+}
 
 
 
