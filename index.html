@@ -5,21 +5,34 @@
 <title>CADD-Speed Racers</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body>
-  <div id="auth-btn" class="btn">Sign In</div>
-  <div id="logout" class="is-hidden"><a href="#" title="">Logout</a></div>
-  <div id="meetups"></div>
+<body id="body">
 
+  <div id="topbar">
+    <div id="weatherImage"></div>
+    <div>
+      <div id="setLocation"></div>
+      <input type="text" name="zip" id="zip">
+      <button type="button" id="set">SET LOCATION</button>
+      <div id="setZip" style="display: none;"></div>
+    </div>
+    <div>
+      <div id="auth-btn" class="btn">Sign In</div>
+      <div id="logout" class="is-hidden"><a href="#" title="">Logout</a></div>
+    </div>
+  </div>
 
-  <div id="setLocation"></div>
-  <input type="text" name="zip" id="zip">
-  <button type="button" id="set">SET</button>
-  <div id="setZip" style="display: none;"></div>
-  <div id="weatherImage"></div>
-  <input id="searchBook" type="text">
-  <div id="outputBook"></div>
-  <div id="savedBooks"><h1>SAVED BOOKS</h1></div>
-  <div id="news"></div>
+  <div id="content">
+    <div id="newsSection">
+      <div id="newsTitle">HERE'S WHAT'S NEW TODAY</div>
+      <div id="news"></div>
+    </div>
+    <div id="categories">
+      <div id="meetups"></div>
+      <input id="searchBook" type="text">
+      <div id="outputBook"></div>
+    </div>
+    <div id="savedBooks"><h1>SAVED BOOKS</h1></div>
+  </div>
 
   <script src="dist/app.js"></script>
 </body>
