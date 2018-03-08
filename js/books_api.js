@@ -193,17 +193,6 @@ function deleteBook(event){
         );
 }
 
-// // data builder
-// function buildBookObj(){
-//     let bookObj = {
-//         title: $(".save").siblings().eq(0).text(),
-//         author: $(".save").siblings().eq(1).text(),
-//         description: $(".save").siblings().eq(2).text(),
-//         uid: login.getUser()
-//     };
-//     return bookObj;
-// }
-
 // //data deleter
 function removeBook(bookId){
     return $.ajax({
@@ -213,31 +202,3 @@ function removeBook(bookId){
         return data;
     });
 }
-
-
-
-// let savedObj = {};
-//savedObj.news() {
-//  title:
-//  source:
-//  description:
-//  uid: 
-//}
-
-//savedObj.meetups() {
-//  title:
-//  venue:
-//  date:
-//  time:
-//  uid:
-//}
-
-//savedObj.books() {
-//  title:
-//  author:
-//  description:
-//  uid:
-//}
-
-//module.exports = {savedObj};
-//savedObj.news();
