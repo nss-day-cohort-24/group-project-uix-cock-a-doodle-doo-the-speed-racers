@@ -36,5 +36,6 @@ $("#auth-btn").click(function(){
 
 $("#logout").click(function(){
   console.log("logout clicked");
+  login.logOut();
 
 });
