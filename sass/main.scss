@@ -7,3 +7,97 @@ $darkcream: #DDCEC4;
 $tealgreen: #7EAB93;
 
 $font-stack: “Helvetica Neue”, Helvetica, sans serif;
+
+// head
+
+#body{
+    font-family: $font-stack;
+}
+
+#topbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $red;
+    padding: 1em;
+    margin: 0;
+}
+
+#weatherImage {
+    display: flex;
+    justify-content: center;
+    color: $cream;
+    width: 5px;
+    margin-left: 50px;
+}
+
+#setLocation {
+    display: flex;
+    justify-content: center;
+    color: $cream;
+    font-size: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+    
+}
+
+#zip {
+    margin-bottom: 5px;
+}
+
+#set {
+    color: $cream;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline:none;
+}
+
+#auth-btn {
+    color: $cream;
+    margin-right: 20px;
+}
+
+#logout a {
+    text-decoration: none;
+    color: $cream;
+}
+
+
+// body
+
+#content {
+    display: flex;
+    flex-direction: row;
+}
+
+#newsSection {
+    margin-top: 30px;
+    width: 475px;
+    border-right-style: solid;
+    border-right-color: #cccccc;
+    border-right-width: 2px;
+
+}
+
+#newsTitle {
+    color: $darkgrey;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: $red;
+    border-bottom-width: 5px;
+    width: 450px;
+    text-align: center;
+}
+
+#news {
+    width: 45%;
+}
+
+#newsImage {
+    width: 450px;
+}

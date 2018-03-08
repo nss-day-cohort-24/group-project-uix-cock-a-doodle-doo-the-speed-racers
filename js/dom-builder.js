@@ -32,7 +32,7 @@ function publishNews(data) {
       url: article.url,
       image: (article.urlToImage === null) ? "Some text" : article.urlToImage
     };
-    newsDiv.innerHTML += `<div><img src="${article.urlToImage}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><a href="${headline.url}" target="_blank">Read more&hellip;</a></div>`;
+    newsDiv.innerHTML += `<div><img id="newsImage" src="${article.urlToImage}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><a href="${headline.url}" target="_blank">Read more&hellip;</a></div>`;
     });
   }
 
