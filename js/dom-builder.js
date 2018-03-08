@@ -7,11 +7,11 @@ function meetupToRenderToDom(meetupList) {
     console.log("meetupList", meetupList);
     let events = meetupList.events;
     events.forEach((event)=> {
-       
       $('#meetups').append(`<div class="meetupevent">
       <h3>${event.group.name}</h3>
-      <h4>${event.local_date} ${event.local_time}</h4>
-      <p> ${event.venue.name} - ${event.venue.address_1}<br>
+      <p> ${event.venue.name}<br> 
+      ${event.venue.address_1}<br></p>
+      <p>${event.local_date} ${event.local_time}</p>
       <a target="_blank" href="${event.link}">learn more</a></div>`);
     });
 }
