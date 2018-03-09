@@ -5,13 +5,19 @@ $mossgreen: #7E8F7C;
 $orange: #EB7118;
 $darkcream: #DDCEC4;
 $tealgreen: #7EAB93;
-
 $font-stack: “Helvetica Neue”, Helvetica, sans serif;
 
 // head
 
+a {
+    text-decoration: none;
+    color: $red;
+}
+
 #body{
+    margin: 0;
     font-family: $font-stack;
+    background-color: $cream; 
 }
 
 #topbar {
@@ -23,12 +29,17 @@ $font-stack: “Helvetica Neue”, Helvetica, sans serif;
     margin: 0;
 }
 
+#temp{
+    color: $cream;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
 #weatherImage {
     display: flex;
-    justify-content: center;
-    color: $cream;
+    flex-direction: row-reverse;
     width: 5px;
-    margin-left: 50px;
+    margin-left: 100px;
 }
 
 #setLocation {
@@ -43,6 +54,9 @@ $font-stack: “Helvetica Neue”, Helvetica, sans serif;
 
 #zip {
     margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, .5);
+    text-decoration: none;
+    border: 0;
 }
 
 #set {
@@ -74,15 +88,15 @@ $font-stack: “Helvetica Neue”, Helvetica, sans serif;
 
 #newsSection {
     margin-top: 30px;
-    width: 475px;
+    width: 50%;
     border-right-style: solid;
     border-right-color: #cccccc;
     border-right-width: 2px;
 
 }
 
+
 #newsTitle {
-    color: $darkgrey;
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 30px;
@@ -90,14 +104,202 @@ $font-stack: “Helvetica Neue”, Helvetica, sans serif;
     border-bottom-style: solid;
     border-bottom-color: $red;
     border-bottom-width: 5px;
-    width: 450px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
 #news {
-    width: 45%;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #newsImage {
-    width: 450px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#categories {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+#meet {
+    width: 100%;
+}
+
+#meetupTitle {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: $red;
+    border-bottom-width: 5px;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#book {
+    width: 100%;
+}
+
+
+#bookTitle {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: $red;
+    border-bottom-width: 5px;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#saved {
+    width: 100%;
+}
+
+#savedTitle {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: $red;
+    border-bottom-width: 5px;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+
+
+.meetupevent {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+}
+
+.meetupevent h3 {
+    font-size: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+}
+.meetupevent p {
+    font-size: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+}
+
+.meetupevent a {
+    font-size: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+}
+
+#searchBook {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; 
+    background-color: $darkcream;
+    text-decoration: none;
+    border: 0;
+}
+
+.prnt h1 {
+    font-size: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+.prnt h2 {
+    font-size: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+.prnt p {
+    font-size: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+
+.save {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    color: $red;
+    font-weight: bolder;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline:none;
+}
+
+.prntSave h1 {
+    font-size: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+.prntSave h2 {
+    font-size: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+.prntSave p {
+    font-size: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+
+.delete {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    color: $red;
+    font-weight: bolder;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline:none;
 }
