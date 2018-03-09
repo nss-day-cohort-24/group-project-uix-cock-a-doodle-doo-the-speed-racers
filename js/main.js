@@ -27,20 +27,21 @@ meetupAPI.callMeetupApi("https://api.meetup.com/find/upcoming_events?photo-host=
 
 $("#auth-btn").click(function(){
   console.log("clicked on Signin");
+  
   login.logInGoogle()
   .then((result) => {
     console.log("result from login", result.user.uid);
-
+    $("#auth-btn").hide();
+    $("#logout").show();
     login.setUser(result.user.uid);
-
-    $("#auth-btn").addClass("is-hidden");
-    $("#logout").removeClass("is-hidden");
 
   });
 });
 
 $("#logout").click(function(){
   console.log("logout clicked");
+  $("#logout").hide();
+  $("#auth-btn").show();
   login.logOut();
 
 });
