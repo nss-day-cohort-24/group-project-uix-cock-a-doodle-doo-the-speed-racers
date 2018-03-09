@@ -50,5 +50,6 @@ var newsDiv = document.querySelector("#news");
 
 newsDiv.addEventListener("click", (e) => {
   let saveButton = e.target;
-  saveItem.prepArticleForSaving(saveButton);
+  let article2save = saveItem.prepArticleForSaving(saveButton);
+  saveItem.saveHeadline(article2save);  
 });
