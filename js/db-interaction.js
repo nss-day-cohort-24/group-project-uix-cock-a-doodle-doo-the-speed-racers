@@ -10,10 +10,29 @@ function prepArticleForSaving(saveButton) {
   let idPieces = particularArticle.split("--");
   let position = idPieces[1];
   let headlineList = headlines.giveAllHeadlines();
-  console.log(headlineList);
-  let targetArticle = headlineList.{position};
-  console.log(targetArticle);
+  let targetArticle = headlineList[position];
+  // console.log(targetArticle));
   return targetArticle;
 }
 
-module.exports ={prepArticleForSaving};
+let saveHeadline = (headline) => {
+    return new Promise((resolve, reject) => {
+    let saveXHR = new XMLHttpRequest();
+
+    saveXHR.addEventListener("load", function() {
+      let data = JSON.parse(this.responseText);
+      // console.log("data in call", data);
+      resolve(data);
+    });
+
+    saveXHR.addEventListener("error", function(){
+      var error = saveXHR.statusText;
+      reject(error);
+    });
+
+    saveXHR.open("POST", `${firebase.getFBsettings().databaseURL}/news.json`);
+    saveXHR.send(JSON.stringify(headline));
+  });
+};
+
+module.exports ={prepArticleForSaving, saveHeadline};
