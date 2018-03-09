@@ -68,6 +68,15 @@ a {
     outline:none;
 }
 
+#change {
+    color: $cream;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline:none;
+}
+
 #auth-btn {
     color: $cream;
     margin-right: 20px;
@@ -123,6 +132,10 @@ a {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.newsDiv {
+    margin-bottom: 40px;
 }
 
 #categories {
@@ -266,6 +279,7 @@ a {
     border: none;
     overflow: hidden;
     outline:none;
+    text-align: left;
 }
 
 .prntSave h1 {
@@ -302,4 +316,5 @@ a {
     border: none;
     overflow: hidden;
     outline:none;
+    text-align: left;
 }

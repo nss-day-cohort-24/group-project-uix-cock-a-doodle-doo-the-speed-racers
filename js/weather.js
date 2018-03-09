@@ -1,11 +1,31 @@
 "use strict";
 let $ = require('jquery');
 
+var change = document.getElementById("change");
 var set = document.getElementById("set");
 set.addEventListener("click", printZip);
+change.addEventListener("click", changeZip);
 
 
 function printZip(){
+  var zipCode = document.getElementById("setZip");
+  var code = document.getElementById("zip").value;
+  $(set).hide();
+  $(change).show();
+  
+
+  zipCode.innerHTML = code;
+
+  if ($('#setZip').is(':empty')) {
+    console.log("empty");
+  } else {
+      weather(code).then((resolve) => {
+        weatherPrint(resolve);
+      });
+  }
+}
+
+function changeZip(){
   var zipCode = document.getElementById("setZip");
   var code = document.getElementById("zip").value;
 
