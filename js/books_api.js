@@ -140,7 +140,7 @@ function loadSaveBooks() {
 //data call for books
 let FbBooks = (input) => {
     return new Promise ((resolve, reject) => {
-        var FB = `https://cadd-speed-racers.firebaseio.com/books.json?orderBy="uid"&equalTo="${input}"`;
+        var FB = `${firebase.getFBsettings().databaseURL}/books.json?orderBy="uid"&equalTo="${input}"`;
         
         let request = new XMLHttpRequest();
 
