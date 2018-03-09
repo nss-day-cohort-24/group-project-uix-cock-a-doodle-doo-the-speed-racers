@@ -9,6 +9,7 @@ let newsToDom = require('./dom-builder');
 require("../js/weather.js");
 let books = require('./books_api');
 let login = require("./user");
+let saveItem = require("./db-interaction");
 
 news_api.getHeadlines()
   .then((resolve) => {
@@ -43,4 +44,11 @@ $("#logout").click(function(){
   console.log("logout clicked");
   login.logOut();
 
+});
+
+var newsDiv = document.querySelector("#news");
+
+newsDiv.addEventListener("click", (e) => {
+  let saveButton = e.target;
+  saveItem.prepArticleForSaving(saveButton);
 });
