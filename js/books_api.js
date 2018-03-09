@@ -170,7 +170,6 @@ let printBkSave = (resolve) => {
         //Print to DOM
         savedBooks.innerHTML += 
         `<div class="prntSave">
-        <h1>SAVED BOOK</h1>
         <h1>${fullItem.title}</h1>
         <h2 class=${itemList.uStatus}>${fullItem.author}</h2>
         <p>${fullItem.description}</p>
