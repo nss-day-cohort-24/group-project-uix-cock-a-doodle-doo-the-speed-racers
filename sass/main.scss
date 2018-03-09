@@ -306,31 +306,6 @@ a {
 
 //API-footer
 
-// #api-footer {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     background-color: $red;
-//     padding: 1em;
-//     margin: 0;
-//     color: $cream;
-// }
-
-#api-footer a{
-    color: $cream;
-    
-}
-
-// .APICredits {
-//     display: flex;
-//     justify-content: center;
-//     color: $cream;
-//     //font-size: 20px;
-//     //margin-bottom: 10px;
-//     //letter-spacing: 5px;
-    
-// }
-
 #api-footer {
     display: flex;
     justify-content: center;
@@ -338,11 +313,18 @@ a {
     padding: 1em;
     margin: 0;
     color: $cream;
-    //font-size: 20px;
-    //margin-bottom: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
     //letter-spacing: 5px;
     
 }
+#api-footer a{
+    color: $cream;
+    
+}
+
+
+
 
 .APICredits {
   text-align: center;
