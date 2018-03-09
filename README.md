@@ -28,7 +28,7 @@
 * Grid framework of your choice
 * Firebase for data storage and retrieval.
 
-##Contributing
+## Contributing
 
 ### Requirements
 * Node v8.9.4 LTS or greater
