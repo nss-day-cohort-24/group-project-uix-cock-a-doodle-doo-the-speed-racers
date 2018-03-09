@@ -1,5 +1,7 @@
 "use strict";
-let $ = require('jquery');
+let $ = require('jquery'),
+    login = require("./user"),
+    firebase = require("./fb-config");
 
 var change = document.getElementById("change");
 var set = document.getElementById("set");
@@ -72,7 +74,44 @@ function weather(code){
     wImage.innerHTML = `<div id="temp">${fahrenheit}°F</div><img src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" alt="weather image">`;
     var location = document.getElementById("setLocation");
     location.innerHTML = `<div id="currentLocation">${weather.name}</div>`;
+    saveWeather(weather);
   }
 
+////////////////////////////////
+/// SECTION 1 SAVING WEATHER ///
+////////////////////////////////
+
+//start line
+function saveWeather(weatherData){
+  let weatherObj = buildWeatherObj(weatherData);
+  console.log(weatherObj);
+  addWeather(weatherObj).then((resolve) => {
+    console.log("DONE!");
+  });
+}
+
+//data builder
+function buildWeatherObj(data){
+  var code = document.getElementById("zip").value;
+  let weatherObj = {
+    lat: data.coord.lon,
+    lon: data.coord.lat,
+    zipCode: code,
+    uid: login.getUser()
+  };
+  return weatherObj;
+}
+
+//data poster
+function addWeather(bookFormObj){
+  return $.ajax({
+      url: `${firebase.getFBsettings().databaseURL}/locations.json`,
+      type: 'POST',
+      data: JSON.stringify(bookFormObj),
+      dataType: 'json'
+  }).done((bookID) => {
+      return bookID;
+  });
+}
     module.exports = {printZip};
 
