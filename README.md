@@ -12,7 +12,7 @@
 
 >  This begun as a [Nashville Software School's](http://nashvillesoftwareschool.com/) team project to create a Single Page Application that is essentially a dashboard for a user to use when they wake up in the morning to keep track of the weather, news, etc.
 
-## Technical Considerations
+### Technical Considerations
 * You will be getting data from different APIs.
 * User authentication using Firebase.
 * The application must have CRUD functionality with the Firebase database.
@@ -20,7 +20,7 @@
 * Use SASS to control your color themes.
 * Incorporate a CSS grid framework
 
-## Technology Requirements
+### Technology Requirements
 * SASS 
 * Grunt (with JSHINT) 
 * Promises
@@ -28,13 +28,15 @@
 * Grid framework of your choice
 * Firebase for data storage and retrieval.
 
+##Contributing
+
 ### Requirements
 * Node v8.9.4 LTS or greater
 
 ### Installation
 ```console
 git clone https://github.com/nss-day-cohort-24/group-project-uix-cock-a-doodle-doo-the-speed-racers.git
-cd theme-park-striking-buccaneers
+cd group-project-uix-cock-a-doodle-doo-the-speed-racers
 cd lib
 npm install
 Run grunt
@@ -48,7 +50,7 @@ Run grunt
 ```
 2. Go to `localhost:http://127.0.0.1:8084/`
 
-## Contributing
+### Insturctions for Contributing
 > When contributing to this repository:
 
 1. Look up in the project tab of the repo, look for the issue in the "to do" column.
