@@ -46,6 +46,7 @@ let dataBook = (input) => {
 // .then(); handles all looping and printing to DOM
 let printBkSearch = (resolve) => {
     outputBook.innerHTML = "";
+    let i = 0;
 
     for (let item in resolve.docs){
         let fullItem  = resolve.docs[item];
@@ -65,8 +66,9 @@ let printBkSearch = (resolve) => {
         <h1>${fullItem.title}${itemList.sub}</h1>
         <h2 class=${itemList.uStatus}>by ${itemList.author}</h2>
         <p>${fullItem.edition_count} ${itemList.ed} ${itemList.pubDate}</p>
-        <button class="save">Save</button>
+        <button id="books--${i}" class="save">Save</button>
         </div>`;
+        i++;
     }
 };
 
@@ -82,7 +84,9 @@ document.querySelector("body").addEventListener("click", saveBook);
 //clicked build data
 function saveBook(event){
     if (event.target.className === "save"){
-        let bookObj = buildBookObj();
+        console.log("id", event.target.id);
+        let id = event.target.id;
+        let bookObj = buildBookObj(id);
         addBook(bookObj).then(
             (resolve) =>{
                 loadSaveBooks();
@@ -91,11 +95,12 @@ function saveBook(event){
 }
 
 // data builder
-function buildBookObj(){
+function buildBookObj(input){
+    let id = input;
     let bookObj = {
-        title: $(".save").siblings().eq(0).text(),
-        author: $(".save").siblings().eq(1).text(),
-        description: $(".save").siblings().eq(2).text(),
+        title: $(`#${id}`).siblings().eq(0).text(),
+        author: $(`#${id}`).siblings().eq(1).text(),
+        description: $(`#${id}`).siblings().eq(2).text(),
         uid: login.getUser()
     };
     return bookObj;
@@ -135,7 +140,7 @@ function loadSaveBooks() {
 //data call for books
 let FbBooks = (input) => {
     return new Promise ((resolve, reject) => {
-        var FB = `https://cadd-speed-racers.firebaseio.com/books.json?orderBy="uid"&equalTo="${input}"`;
+        var FB = `${firebase.getFBsettings().databaseURL}/books.json?orderBy="uid"&equalTo="${input}"`;
         
         let request = new XMLHttpRequest();
 
@@ -165,11 +170,10 @@ let printBkSave = (resolve) => {
         //Print to DOM
         savedBooks.innerHTML += 
         `<div class="prntSave">
-        <h1>SAVED BOOK</h1>
         <h1>${fullItem.title}</h1>
         <h2 class=${itemList.uStatus}>${fullItem.author}</h2>
         <p>${fullItem.description}</p>
-        <button id="${item}" class="delete">DELETE</button>
+        <button id="${item}" class="delete">Delete</button>
         </div>`;
     }
 };

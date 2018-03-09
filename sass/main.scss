@@ -68,14 +68,29 @@ a {
     outline:none;
 }
 
+#change {
+    color: $cream;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline:none;
+}
+
 #auth-btn {
     color: $cream;
+    margin-top: 10px;
     margin-right: 20px;
 }
 
 #logout a {
     text-decoration: none;
     color: $cream;
+}
+
+#logout {
+    margin-top: 10px;
+    margin-right: 20px;
 }
 
 
@@ -88,6 +103,7 @@ a {
 
 #newsSection {
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 50%;
     border-right-style: solid;
     border-right-color: #cccccc;
@@ -123,6 +139,10 @@ a {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.newsDiv {
+    margin-bottom: 40px;
 }
 
 #categories {
@@ -266,6 +286,13 @@ a {
     border: none;
     overflow: hidden;
     outline:none;
+    text-align: right;
+}
+
+.readSave {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .prntSave h1 {
@@ -302,4 +329,28 @@ a {
     border: none;
     overflow: hidden;
     outline:none;
+    text-align: right;
+
 }
+
+//API-footer
+
+#api-footer {
+    display: flex;
+    justify-content: center;
+    background-color: $red;
+    padding: 1em;
+    margin: 0;
+    color: $cream;
+    font-size: 12px; 
+}
+
+#api-footer a{
+    color: $cream; 
+}
+
+.APICredits {
+  text-align: center;
+}
+
+   
