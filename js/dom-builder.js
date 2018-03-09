@@ -43,7 +43,7 @@ function publishNews(aRay) {
 
     allHeadlines[i] = headline;
 
-    newsDiv.innerHTML += `<div id="news_article--${i}"><img id="newsImage" src="${article.urlToImage}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><a href="${headline.url}" target="_blank">Read more&hellip;</a><a href="#">Save</a></div>`;
+    newsDiv.innerHTML += `<div id="news_article--${i}" class="newsDiv"><img id="newsImage" src="${article.urlToImage}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><div class="readSave"><div><a href="${headline.url}" target="_blank">Read more&hellip;</a></div><div><a href="#">Save</a></div></div></div>`;
 
     }
     console.log("allHeadlines", allHeadlines);

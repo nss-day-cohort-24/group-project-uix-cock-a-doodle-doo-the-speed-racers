@@ -279,7 +279,13 @@ a {
     border: none;
     overflow: hidden;
     outline:none;
-    text-align: left;
+    text-align: right;
+}
+
+.readSave {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .prntSave h1 {
