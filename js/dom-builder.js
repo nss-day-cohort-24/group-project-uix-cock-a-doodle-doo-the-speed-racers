@@ -44,7 +44,7 @@ function publishNews(aRay) {
     allHeadlines[i] = headline;
     newsDiv.innerHTML += `<div id="news_article--${i}"><img id="newsImage" src="${headline.image}"><h3>${headline.title}</h3><h4>${headline.source_name}</h4><p>${headline.description}</p><a href="${headline.url}" target="_blank">Read more&hellip;</a><a href="#">Save</a></div>`;
     }
-    console.log("allHeadlines", allHeadlines);
+    // console.log("allHeadlines", allHeadlines);
   }
 
 module.exports = {publishNews, meetupToRenderToDom, chopData, giveAllHeadlines};
