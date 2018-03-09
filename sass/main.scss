@@ -322,5 +322,27 @@ a {
     border: none;
     overflow: hidden;
     outline:none;
-    text-align: left;
+
 }
+
+//API-footer
+
+#api-footer {
+    display: flex;
+    justify-content: center;
+    background-color: $red;
+    padding: 1em;
+    margin: 0;
+    color: $cream;
+    font-size: 12px; 
+}
+
+#api-footer a{
+    color: $cream; 
+}
+
+.APICredits {
+  text-align: center;
+}
+
+   
